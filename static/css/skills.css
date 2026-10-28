@@ -1,0 +1,145 @@
+/* Scoped cards preserve the existing homepage presentation. */
+
+.skills-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+.skill-detail-card {
+    min-width: 0;
+    padding: 25px;
+    overflow-wrap: anywhere;
+}
+
+.skill-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.skill-card-top .learning-label {
+    margin: 0;
+    color: var(--text-label);
+    background: var(--soft);
+}
+
+.skill-detail-card h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 20px 0 10px;
+}
+
+.skill-detail-card .skill-purpose {
+    min-height: 72px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.skill-details {
+    border-top: 1px solid var(--line);
+    margin-top: 20px;
+}
+
+.skill-details summary {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-top: 16px;
+    min-height: 44px;
+    cursor: pointer;
+    list-style: none;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.skill-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.skill-details summary > svg {
+    margin-left: auto;
+    width: 16px;
+    transition: transform .2s, background-color .25s, color .25s, border-color .25s;
+}
+
+.skill-details[open] summary > svg {
+    transform: rotate(180deg);
+}
+
+.skill-details .details-open,
+.skill-details[open] .details-closed {
+    display: none;
+}
+
+.skill-details[open] .details-open {
+    display: inline;
+}
+
+.skill-details-body h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 22px 0 9px;
+}
+
+.skill-explanation p + p {
+    margin-top: 12px;
+}
+
+.skill-task-list {
+    list-style: disc;
+    padding-left: 17px;
+    color: var(--slate);
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+.skill-task-list li + li {
+    margin-top: 8px;
+}
+
+.skill-task-list li::marker {
+    color: var(--blue);
+}
+
+.skill-tool-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.skill-tool-labels li {
+    font-size: 10px;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    color: var(--text-body);
+    background: var(--soft);
+}
+
+@media (max-width: 1050px) {
+    .skills-detail-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .skills-detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+    .skill-detail-card .skill-purpose {
+        min-height: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-details summary > svg {
+        transition: none;
+    }
+}

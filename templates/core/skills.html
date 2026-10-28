@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/skills.css' %}">
+{% endblock %}
+
+{% block title %}Skills & tools · {{ profile.full_name }}{% endblock %}
+
+{% block content %}
+    <section class="container page-heading">
+        <span class="eyebrow">MY GROWING TOOLKIT</span>
+        <h1>The skills behind<br>organized work.</h1>
+        <p>Practical capabilities I'm developing through independent learning and sample projects.</p>
+    </section>
+
+    <section class="container" aria-labelledby="administrative-heading">
+        <div class="inline-note">
+            <i data-lucide="sprout" aria-hidden="true"></i>
+            <p>
+                These are skills and tools I have practiced or am learning. They represent my
+                current learning journey, not professional mastery or work experience.
+                Related tools are examples commonly used for each task.
+            </p>
+        </div>
+        <div class="section-heading">
+            <h2 id="administrative-heading">Administrative skills</h2>
+            <span class="muted">FOUNDATIONS FOR EVERYDAY SUPPORT</span>
+        </div>
+        <div class="skills-detail-grid">
+            {% for skill in admin_skills %}
+                {% include 'components/skill_detail_card.html' with is_tool=False %}
+            {% empty %}
+                <p>New practice skills will appear here soon.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="container section" aria-labelledby="tools-heading">
+        <div class="section-heading">
+            <h2 id="tools-heading">Digital tools</h2>
+            <span class="muted">LEARNING THE TOOLS OF THE TRADE</span>
+        </div>
+        <p class="section-intro">
+            The purpose behind each tool, and the everyday tasks I'm learning to use it for.
+        </p>
+        <div class="skills-detail-grid">
+            {% for skill in tools %}
+                {% include 'components/skill_detail_card.html' with is_tool=True %}
+            {% empty %}
+                <p>New tools will appear here as my learning continues.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'components/cta.html' %}
+{% endblock %}

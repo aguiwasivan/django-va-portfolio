@@ -1,0 +1,236 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero container">
+    <div class="hero-copy reveal">
+        <span class="availability">
+            <span></span>
+            {{ profile.availability_status|default:'Open to remote opportunities' }}
+        </span>
+
+        <h1>
+            Hi, I'm<br>
+            <span>
+                {{ profile.full_name|default:'Ivan Raymond M. Aguiwas' }}
+                <span class="blue-dot">.</span>
+            </span>
+        </h1>
+
+        <h2>
+            {{ profile.professional_title|default:'Aspiring Virtual Administrative Assistant' }}
+        </h2>
+
+        <p class="hero-description">
+            Helping businesses stay organized through reliable administrative
+            support, efficient task management, and attention to detail.
+        </p>
+
+        <div class="button-row">
+            <a class="button" href="{% url 'projects:list' %}">
+                View my work
+                <i data-lucide="arrow-up-right"></i>
+            </a>
+
+            <a class="button secondary" href="{% url 'contact' %}">
+                Contact me
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+
+        {% if profile.resume %}
+            <a class="text-link resume-link" href="{% url 'resume' %}" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="file-text" aria-hidden="true"></i>
+                View resume
+                <span class="sr-only">(opens in a new tab)</span>
+            </a>
+        {% else %}
+            <span class="resume-link muted">
+                <i data-lucide="file-user"></i>
+                Resume will be available here soon
+            </span>
+        {% endif %}
+
+        <div class="hero-note">
+            <span class="small-icon">
+                <i data-lucide="sparkles"></i>
+            </span>
+            A fresh perspective. A thoughtful approach.
+        </div>
+    </div>
+
+    <div class="hero-visual reveal">
+        <div class="portrait-frame">
+            {% if profile.profile_image %}
+                <img
+                    src="{{ profile.profile_image.url }}"
+                    alt="{{ profile.full_name }}"
+                    width="600"
+                    height="700"
+                    fetchpriority="high"
+                >
+            {% else %}
+                <img
+                    src="{% static 'images/profile-placeholder.svg' %}"
+                    alt="Illustrated profile placeholder; personal photo not yet added"
+                    width="600"
+                    height="700"
+                    fetchpriority="high"
+                >
+
+                <span class="photo-label">
+                    YOUR PHOTO HERE
+                </span>
+            {% endif %}
+
+            <div class="portrait-caption">
+                <span>ORGANIZED BY NATURE.</span>
+                <strong>Ready for what's next.</strong>
+            </div>
+        </div>
+
+        <span class="visual-caption">
+            STARTING WITH SKILLS. GROWING WITH PURPOSE.
+        </span>
+    </div>
+</section>
+
+<!-- VALUE STRIP -->
+<div class="value-strip">
+    <div class="container">
+        <span>
+            <i data-lucide="folder-check"></i>
+            Organized & detail-oriented
+        </span>
+
+        <span>
+            <i data-lucide="messages-square"></i>
+            Clear communication
+        </span>
+
+        <span>
+            <i data-lucide="laptop"></i>
+            Remote-ready mindset
+        </span>
+
+        <span>
+            <i data-lucide="sprout"></i>
+            Always learning
+        </span>
+    </div>
+</div>
+
+<!-- ABOUT ME SECTION -->
+<section class="container section intro-grid reveal">
+    <div>
+        <span class="eyebrow">
+            A LITTLE ABOUT ME
+        </span>
+
+        <h2>
+            At the beginning.<br>
+            Already intentional.
+        </h2>
+    </div>
+
+    <div>
+        <p class="lead">
+            I believe good administrative support starts with care:
+            for the details, for people's time, and for the work
+            that needs to get done.
+        </p>
+
+        <p>
+            I'm beginning my professional journey and building
+            practical skills through independent projects.
+            My goal is simple: help a team stay organized,
+            communicate clearly, and move forward.
+        </p>
+
+        <a class="text-link" href="{% url 'about' %}">
+            Get to know me
+            <i data-lucide="arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="soft-section">
+    <div class="container section">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">
+                    WHAT I BRING
+                </span>
+
+                <h2>
+                    Practical skills. Thoughtful support.
+                </h2>
+            </div>
+
+            <a class="text-link" href="{% url 'skills' %}">
+                All skills & tools
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+
+        <p class="section-intro">
+            Skills I'm developing and putting into practice,
+            one project at a time.
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {% for skill in skills %}
+                <article class="skill-card reveal">
+                    <span class="icon-box">
+                        <i data-lucide="{{ skill.icon }}"></i>
+                    </span>
+
+                    <h3>{{ skill.name }}</h3>
+
+                    <p>{{ skill.description }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED PROJECTS SECTION -->
+<section class="container section">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">
+                LEARNING, MADE VISIBLE
+            </span>
+
+            <h2>
+                A look at my work.
+            </h2>
+        </div>
+
+        <a class="text-link" href="{% url 'projects:list' %}">
+            Explore portfolio
+            <i data-lucide="arrow-right"></i>
+        </a>
+    </div>
+
+    <p class="section-intro">
+        Realistic practice projects. Fictional data.
+        A genuine commitment to getting the details right.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        {% for project in featured_projects %}
+            {% include 'components/project_card.html' %}
+        {% empty %}
+            <p>Practice projects are being prepared.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+{% include 'components/cta.html' %}
+
+{% endblock %}

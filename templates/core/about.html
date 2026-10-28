@@ -1,0 +1,457 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    About Me · {{ profile.full_name }}
+{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="container page-heading">
+    <span class="eyebrow">
+        THE PERSON BEHIND THE WORK
+    </span>
+
+    <h1>
+        A thoughtful start.<br>
+        A purposeful next step.
+    </h1>
+
+    <p>
+        Motivated by growth, guided by organization,
+        and committed to becoming a reliable
+        Virtual Administrative Assistant.
+    </p>
+</section>
+
+<!-- ABOUT ME SECTION -->
+<section class="container about-grid">
+
+    <!-- PROFILE PHOTO -->
+    <div class="about-photo">
+
+        {% if profile.profile_image %}
+            <img
+                src="{{ profile.profile_image.url }}"
+                alt="{{ profile.full_name }}"
+                width="600"
+                height="700"
+            >
+        {% else %}
+            <img
+                src="{% static 'images/profile-placeholder.svg' %}"
+                alt="Profile photo placeholder"
+                width="600"
+                height="700"
+            >
+        {% endif %}
+
+        <span class="availability">
+            <span></span>
+            {{ profile.availability_status }}
+        </span>
+    </div>
+
+    <!-- ABOUT CONTENT -->
+    <div class="prose">
+
+        <span class="eyebrow">
+            HELLO, I'M {{ profile.full_name|upper }}
+        </span>
+
+        <h2>
+            Organization with a human touch.
+        </h2>
+
+        {% if profile.biography %}
+            {{ profile.biography|linebreaks }}
+        {% else %}
+            <p>
+                I am an aspiring Virtual Administrative Assistant
+                who is passionate about learning, organization,
+                and providing dependable administrative support.
+                I am currently developing practical skills
+                that can help businesses and professionals
+                manage their daily responsibilities more efficiently.
+            </p>
+
+            <p>
+                As someone beginning my professional journey,
+                I understand the importance of building a
+                strong foundation in communication, time management,
+                attention to detail, and digital productivity.
+                I am committed to improving these skills through
+                independent learning, hands-on exercises,
+                and realistic administrative sample projects.
+            </p>
+
+            <p>
+                I believe that effective administrative support
+                goes beyond completing tasks. It involves
+                understanding priorities, maintaining organized
+                information, communicating clearly, and helping
+                a team focus on what matters most.
+            </p>
+        {% endif %}
+
+        <!-- CAREER OBJECTIVE -->
+        <h3>My Career Objective</h3>
+
+        <p>
+            My goal is to begin my career as a Virtual
+            Administrative Assistant and become a dependable
+            member of a remote team.
+        </p>
+
+        <p>
+            I aim to contribute to daily business operations
+            by supporting tasks such as data entry,
+            email organization, appointment scheduling,
+            document preparation, file management,
+            and online research.
+        </p>
+
+        <p>
+            I am looking for an opportunity where I can
+            apply my developing skills, receive constructive
+            feedback, and continue growing professionally
+            while contributing meaningful support
+            to an organization.
+        </p>
+
+        <!-- WILLINGNESS TO LEARN -->
+        <h3>My Willingness to Learn</h3>
+
+        <p>
+            I believe that learning is an important part
+            of professional development. While I am still
+            gaining practical experience, I am willing
+            to explore unfamiliar tools, understand
+            new processes, and improve my abilities
+            through consistent practice.
+        </p>
+
+        <p>
+            When I encounter a task that I have not
+            completed before, I focus on understanding
+            the instructions, asking relevant questions,
+            researching appropriate solutions,
+            and reviewing my work carefully.
+        </p>
+
+        <p>
+            I value constructive feedback because
+            it helps me identify areas for improvement
+            and develop better working habits.
+        </p>
+
+    </div>
+</section>
+
+<!-- PERSONAL STRENGTHS -->
+<section class="soft-section">
+    <div class="container section">
+
+        <span class="eyebrow">
+            PERSONAL STRENGTHS
+        </span>
+
+        <h2>
+            The qualities I bring to every task.
+        </h2>
+
+        <p class="section-intro">
+            I am continuously developing the personal
+            and professional qualities needed to provide
+            effective administrative support.
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="list-checks"></i>
+                </span>
+
+                <h3>Organization</h3>
+
+                <p>
+                    I value structured workflows, clear
+                    documentation, and organized information
+                    to make everyday tasks easier to manage.
+                </p>
+            </article>
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="search-check"></i>
+                </span>
+
+                <h3>Attention to Detail</h3>
+
+                <p>
+                    I understand the importance of checking
+                    information, following instructions,
+                    and maintaining accuracy in
+                    administrative work.
+                </p>
+            </article>
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="messages-square"></i>
+                </span>
+
+                <h3>Communication</h3>
+
+                <p>
+                    I am developing professional communication
+                    habits by practicing clear writing,
+                    active listening, and respectful
+                    workplace interactions.
+                </p>
+            </article>
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="book-open"></i>
+                </span>
+
+                <h3>Adaptability</h3>
+
+                <p>
+                    I am open to learning new tools,
+                    adjusting to different workflows,
+                    and improving my approach
+                    based on feedback.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- WORK APPROACH -->
+<section class="container section">
+
+    <span class="eyebrow">
+        HOW I APPROACH THE WORK
+    </span>
+
+    <h2>
+        Small habits. A strong foundation.
+    </h2>
+
+    <p class="section-intro">
+        I believe that completing tasks effectively
+        requires a clear process, thoughtful organization,
+        and careful review.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+
+        <!-- STEP 1 -->
+        <article class="skill-card reveal">
+
+            <span class="step">
+                01 / UNDERSTAND
+            </span>
+
+            <h3>Clarity Before Action</h3>
+
+            <p>
+                Before starting a task, I aim to understand
+                its purpose, requirements, expected results,
+                and deadline.
+            </p>
+
+            <p>
+                I believe asking questions early and taking
+                clear notes can help prevent misunderstandings
+                and improve the quality of work.
+            </p>
+
+        </article>
+
+        <!-- STEP 2 -->
+        <article class="skill-card reveal">
+
+            <span class="step">
+                02 / ORGANIZE
+            </span>
+
+            <h3>Structure That Helps</h3>
+
+            <p>
+                I break responsibilities into manageable
+                steps, organize important information,
+                and use task lists to maintain
+                visibility over priorities.
+            </p>
+
+            <p>
+                I am practicing efficient file organization,
+                calendar management, and digital
+                productivity methods.
+            </p>
+
+        </article>
+
+        <!-- STEP 3 -->
+        <article class="skill-card reveal">
+
+            <span class="step">
+                03 / REVIEW
+            </span>
+
+            <h3>Care in the Details</h3>
+
+            <p>
+                Before completing a task, I aim to review
+                the information for accuracy, consistency,
+                and completeness.
+            </p>
+
+            <p>
+                I also believe in communicating progress,
+                accepting feedback, and identifying
+                ways to improve future work.
+            </p>
+
+        </article>
+
+    </div>
+</section>
+
+<!-- REMOTE WORK READINESS -->
+<section class="soft-section">
+    <div class="container section">
+
+        <span class="eyebrow">
+            PREPARING FOR REMOTE WORK
+        </span>
+
+        <h2>
+            Building skills for a digital workplace.
+        </h2>
+
+        <p class="section-intro">
+            Remote administrative support requires
+            effective communication, digital organization,
+            independence, and familiarity with
+            online collaboration tools.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="laptop"></i>
+                </span>
+
+                <h3>Digital Productivity</h3>
+
+                <p>
+                    I am practicing the use of Microsoft
+                    Office, Google Workspace, and other
+                    productivity tools for organizing
+                    information and preparing documents.
+                </p>
+            </article>
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="calendar-clock"></i>
+                </span>
+
+                <h3>Time Management</h3>
+
+                <p>
+                    I am learning how to prioritize
+                    responsibilities, manage schedules,
+                    track deadlines, and maintain
+                    productive daily routines.
+                </p>
+            </article>
+
+            <article class="skill-card reveal">
+                <span class="icon-box">
+                    <i data-lucide="video"></i>
+                </span>
+
+                <h3>Virtual Collaboration</h3>
+
+                <p>
+                    I am becoming familiar with online
+                    communication tools such as Zoom,
+                    Google Meet, Gmail, and shared
+                    cloud-based workspaces.
+                </p>
+            </article>
+
+        </div>
+
+        <div class="inline-note">
+            <i data-lucide="monitor"></i>
+
+            <p>
+                I am continuously practicing with Microsoft
+                Office, Google Workspace, Canva, and virtual
+                meeting tools.
+
+                <a class="text-link" href="{% url 'skills' %}">
+                    Explore my skills & tools →
+                </a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROFESSIONAL GROWTH -->
+<section class="container section">
+
+    <span class="eyebrow">
+        LOOKING AHEAD
+    </span>
+
+    <h2>
+        Learning today. Contributing tomorrow.
+    </h2>
+
+    <div class="prose">
+        <p>
+            I see every opportunity to learn as a step
+            toward becoming a more capable and reliable
+            administrative professional.
+        </p>
+
+        <p>
+            Through hands-on practice and sample projects,
+            I am building confidence in managing information,
+            preparing documents, organizing schedules,
+            and communicating professionally.
+        </p>
+
+        <p>
+            My long-term goal is to become a trusted
+            Virtual Administrative Assistant who
+            contributes to smooth business operations,
+            supports team productivity, and continues
+            improving through experience.
+        </p>
+
+        <a class="text-link" href="{% url 'projects:list' %}">
+            View my practice projects
+            <i data-lucide="arrow-right"></i>
+        </a>
+    </div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+{% include 'components/cta.html' %}
+
+{% endblock %}

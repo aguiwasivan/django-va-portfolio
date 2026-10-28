@@ -1,0 +1,12 @@
+{
+    "private": true,
+    "scripts": {
+        "build:css": "tailwindcss -i static/css/input.css -o static/css/tailwind.css --minify",
+        "vendor": "node scripts/vendor.cjs",
+        "test:theme": "node scripts/theme.test.cjs"
+    },
+    "devDependencies": {
+        "tailwindcss": "3.4.17",
+        "lucide": "0.468.0"
+    }
+}

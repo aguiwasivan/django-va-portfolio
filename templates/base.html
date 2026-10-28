@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{{ profile.full_name|default:'Your Name' }} · Virtual Administrative Assistant{% endblock %}</title>
+        <meta name="description" content="{% block description %}Aspiring Virtual Administrative Assistant. Explore administrative skills, thoughtful practice projects, and availability for remote opportunities.{% endblock %}">
+        <link rel="canonical" href="{{ canonical_url }}">
+        <meta property="og:title" content="{{ profile.full_name|default:'Your Name' }} · Administrative portfolio">
+        <meta property="og:description" content="Organization, care, and a willingness to learn. Explore my administrative practice portfolio.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ canonical_url }}">
+        <meta property="og:image" content="{{ site_url }}{% static 'images/social-card.png' %}">
+        <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+        <script src="{% static 'js/theme.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+        <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+        <link rel="stylesheet" href="{% static 'css/site.css' %}">
+        <script defer src="{% static 'js/lucide.min.js' %}"></script>
+        <script defer src="{% static 'js/site.js' %}"></script>
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <header class="site-header">
+            <div class="container nav-wrap">
+                <a class="brand" href="{% url 'home' %}" aria-label="Portfolio home">
+                    <span class="brand-mark">{{ profile.full_name|default:'Y'|slice:':1' }}<span>.</span></span>
+                    <span>
+                        {{ profile.full_name|default:'Your Name' }}
+                        <small>ADMINISTRATIVE PORTFOLIO</small>
+                    </span>
+                </a>
+                <div class="nav-actions">
+                    <nav id="navigation" aria-label="Main navigation">
+                        <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Home</a>
+                        <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About me</a>
+                        <a href="{% url 'skills' %}" {% if request.resolver_match.url_name == 'skills' %}aria-current="page"{% endif %}>Skills & tools</a>
+                        <a href="{% url 'projects:list' %}" {% if request.resolver_match.namespace == 'projects' %}aria-current="page"{% endif %}>Portfolio</a>
+                        <a class="nav-contact" href="{% url 'contact' %}">
+                            Let's connect
+                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                        </a>
+                    </nav>
+                    {% include 'components/theme_toggle.html' %}
+                    <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <i data-lucide="menu" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main id="main">
+            {% if messages %}
+                <div class="container" role="status">
+                    {% for message in messages %}
+                        <p class="notice">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <div class="container footer-top">
+                <div>
+                    <a class="brand" href="{% url 'home' %}">
+                        <span class="brand-mark">{{ profile.full_name|default:'Y'|slice:':1' }}<span>.</span></span>
+                        {{ profile.full_name|default:'Your Name' }}
+                    </a>
+                    <p>Thoughtful support. Organized work. Room to grow.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="{% url 'about' %}">About</a>
+                    <a href="{% url 'projects:list' %}">My work</a>
+                    <a href="{% url 'contact' %}">Contact</a>
+                    {% if profile.linkedin_url %}
+                        <a href="{{ profile.linkedin_url }}" rel="noopener noreferrer">LinkedIn ↗</a>
+                    {% endif %}
+                    {% if profile.github_url %}
+                        <a href="{{ profile.github_url }}" rel="noopener noreferrer">GitHub ↗</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <span>© {% now 'Y' %} {{ profile.full_name|default:'Your Name' }}. All rights reserved.</span>
+                <span>Built with care. Ready to learn.</span>
+            </div>
+        </footer>
+    </body>
+</html>

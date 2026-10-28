@@ -1,0 +1,43 @@
+<article class="skill-card skill-detail-card reveal" aria-labelledby="skill-{{ skill.pk }}">
+    <div class="skill-card-top">
+        <span class="icon-box">
+            <i data-lucide="{{ skill.icon }}" aria-hidden="true"></i>
+        </span>
+        <span class="learning-label">In Practice</span>
+    </div>
+    <h3 id="skill-{{ skill.pk }}">{{ skill.name }}</h3>
+    <p class="skill-purpose">{{ skill.description }}</p>
+
+    {% if skill.detailed_description or skill.practical_tasks or skill.related_tools %}
+        <details class="skill-details">
+            <summary>
+                <span class="details-closed">View Details</span>
+                <span class="details-open">Show Less</span>
+                <span class="sr-only"> about {{ skill.name }}</span>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="skill-details-body">
+                {% if skill.detailed_description %}
+                    <h4>What I'm learning</h4>
+                    <div class="skill-explanation">{{ skill.detailed_description|linebreaks }}</div>
+                {% endif %}
+                {% if skill.task_list %}
+                    <h4>{% if is_tool %}Administrative use cases{% else %}Practical tasks{% endif %}</h4>
+                    <ul class="skill-task-list">
+                        {% for task in skill.task_list %}
+                            <li>{{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if skill.tool_list %}
+                    <h4>Commonly used tools</h4>
+                    <ul class="skill-tool-labels" aria-label="Related tools">
+                        {% for tool in skill.tool_list %}
+                            <li>{{ tool }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </details>
+    {% endif %}
+</article>

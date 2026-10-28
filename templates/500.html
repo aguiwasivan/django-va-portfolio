@@ -1,0 +1,47 @@
+{% load static %}
+{% get_static_prefix as static_prefix %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Something went wrong</title>
+        <!-- Use stable static paths: this error page needs no database or manifest lookup. -->
+        <script src="{{ static_prefix }}js/theme.js"></script>
+        <link rel="stylesheet" href="{{ static_prefix }}css/theme.css">
+        <script defer src="{{ static_prefix }}js/lucide.min.js"></script>
+        <script defer src="{{ static_prefix }}js/error.js"></script>
+        <style>
+            body {
+                font: 18px/1.7 system-ui, sans-serif;
+                background: var(--secondary-bg, #f8fafc);
+                color: var(--text-primary, #0f172a);
+                max-width: 650px;
+                margin: 15vh auto;
+                padding: 30px;
+            }
+
+            p {
+                color: var(--text-secondary, #64748b);
+            }
+
+            a {
+                color: var(--accent, #2563eb);
+            }
+
+            :focus-visible {
+                outline: 3px solid var(--accent, #2563eb);
+                outline-offset: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        {% include 'components/theme_toggle.html' %}
+        <main>
+            <p>500 / PLEASE TRY AGAIN</p>
+            <h1>A brief interruption.</h1>
+            <p>Something went wrong on our end. Please try again shortly.</p>
+            <a href="/">Return to home</a>
+        </main>
+    </body>
+</html>
